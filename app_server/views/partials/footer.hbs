@@ -2,25 +2,25 @@
 		<div id="footer">
 			<div>
 				<ul class="navigation">
-					<li>
+					<li class="{{#if (eq activePage 'index')}}active{{/if}}">
 						<a href="/index">Home</a>
 					</li>
-					<li>
+					<li class="{{#if (eq activePage 'travel')}}active{{/if}}">
 						<a href="/travel">Travel</a>
 					</li>
-					<li>
+					<li class="{{#if (eq activePage 'rooms')}}active{{/if}}">
 						<a href="/rooms">Rooms</a>
 					</li>
-					<li>
+					<li class="{{#if (eq activePage 'meals')}}active{{/if}}">
 						<a href="/meals">Meals</a>
 					</li>
-					<li>
+					<li class="{{#if (eq activePage 'news')}}active{{/if}}">
 						<a href="/news">News</a>
 					</li>
-					<li>
+					<li class="{{#if (eq activePage 'about')}}active{{/if}}">
 						<a href="/about">About</a>
 					</li>
-					<li>
+					<li class="{{#if (eq activePage 'contact')}}active{{/if}}">
 						<a href="/contact">Contact</a>
 					</li>
 				</ul>

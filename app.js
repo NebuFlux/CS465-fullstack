@@ -22,13 +22,17 @@ app.set('views', path.join(__dirname, 'app_server', 'views'));
 // register handlebars partials (https://www.npmjs.com/package/hbs)
 handlebars.registerPartials(__dirname + '/app_server/views/partials');
 
+// register helper for handlebar conditional rendering
+handlebars.registerHelper('eq', function(a,b){
+  return a == b;
+});
+
 app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/index', indexRouter);
@@ -39,6 +43,9 @@ app.use('/meals', mealsRouter);
 app.use('/news', newsRouter);
 app.use('/rooms', roomsRouter);
 app.use('/users', usersRouter);
+
+// Use static router last
+app.use(express.static(path.join(__dirname, 'public')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
