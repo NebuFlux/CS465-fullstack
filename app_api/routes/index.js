@@ -32,8 +32,12 @@ router
 // route news data endpoint
 router.route('/news').get(newsController.newsData);
 
-// route meals data endpoint
+// route meals data endpoints
 router.route('/meals').get(mealsController.mealsList);
+
+router
+    .route('/meals/:mealCode')
+    .get(mealsController.mealFindByCode);
 
 // route home data endpoint
 router.route('/').get(homeController.homeData);

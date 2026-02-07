@@ -7,7 +7,7 @@ const options = {
 
 // GET meals view
 const meals = async (req, res, next) => {
-
+    console.log('MEALS CONTROLLER BEGIN');
     await fetch(mealsEndpoint, options)
         .then((res) => res.json())
         .then((json) => {
@@ -21,7 +21,7 @@ const meals = async (req, res, next) => {
                     message = "no meals in our database";
                 }
             }
-
+            console.log(json);
             res.render('meals', {
                 Title: "Travlr Getaways", 
                 activePage: 'meals', 
