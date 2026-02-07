@@ -1,8 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
-// import controller to route
+// import controllers to route
 const tripsController = require("../controllers/trips");
+const roomsController = require("../controllers/rooms");
+const newsController = require("../controllers/news");
+const mealsController = require("../controllers/meals");
+const homeController = require("../controllers/home");
+const contactController = require("../controllers/contact");
+const aboutController = require("../controllers/about");
 
 // define route for our trips endpoint
 router
@@ -14,4 +20,30 @@ router
     .route('/trips/:tripCode')
     .get(tripsController.tripsFindByCode);
 
+// route for rooms endpoint
+router.route('/rooms')
+    .get(roomsController.roomList);
+
+// GET Method routes RoomsFindByCode: @param-code
+router
+    .route('/rooms/:roomCode')
+    .get(roomsController.roomsFindByCode);
+
+// route news data endpoint
+router.route('/news').get(newsController.newsData);
+
+// route meals data endpoint
+router.route('/meals').get(mealsController.mealsList);
+
+// route home data endpoint
+router.route('/').get(homeController.homeData);
+router.route('/home').get(homeController.homeData);
+
+// route contact data endpoint
+router.route('/contact').get(contactController.contactData);
+
+// route about data endpoint
+router.route('/about').get(aboutController.aboutData);
+
+// route index
 module.exports = router;

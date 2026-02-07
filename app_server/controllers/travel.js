@@ -1,7 +1,3 @@
-// uncomment the following 2 lines to read info from json file
-// const fs = require('fs');
-// const trips = JSON.parse(fs.readFileSync('./data/trips.json','utf-8'));
-
 // api endpoint
 const tripsEndpoint = 'http://localhost:3000/api/trips';
 const options = {
