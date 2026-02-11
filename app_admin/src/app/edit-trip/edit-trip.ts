@@ -55,15 +55,18 @@ export class EditTrip implements OnInit {
     this.tripData.getTrip(tripCode)
       .subscribe({
         next: (value: any) => {
-          this.trip = value;
-          // Populate our record into the form
-          this.editForm.patchValue(value[0]);
-          if(!value){
+          this.trip = value[0];
+          
+          if(!this.trip){
             this.message = 'No Trip Retrieved!';
           } else {
             this.message = 'trip: ' + tripCode + ' retrieved';
           }
           console.log(this.message);
+
+          this.trip.start = value[0].start.split('T')[0];
+          // Populate our record into the form
+          this.editForm.patchValue(value[0]);
         },
         error: (error: any) => {
           console.log('Error: ' + error);

@@ -96,7 +96,7 @@ const tripsUpdateTrip = async(req, res) => {
         // Database returned no data
         return res.status(400).json(err);
     }else{
-        return res.status(400).json(q);
+        return res.status(200).json(q);
     }
     // Uncomment to show results of operation
     //console.log(q);
