@@ -18,9 +18,9 @@
           "options": {
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
-            "assets": ["public/favicon.ico", "assets"],
+            "assets": ["public/favicon.ico", "src/assets"],
             "styles": [
-              "src/app/assets/css/styles.css"
+              "src/assets/css/styles.css"
             ]
           },
           "configurations": {

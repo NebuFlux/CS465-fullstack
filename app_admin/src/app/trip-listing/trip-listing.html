@@ -1,8 +1,11 @@
 <!-- <pre>{{ trips | json }}</pre> -->
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
-    @for (trip of trips; track trip.code){
-        <div class="col">
-            <app-trip-card [trip] ="trip" class="card-deck mt-2"></app-trip-card>    
-        </div>
+<div>
+    <button (click)="addTrip()" class="btn btn-info">Add Trip</button>
+</div>
+<div class="row row-cols-auto row-cols-sm-3">
+    @for (trip of trips; track trip._id){
+        <div class="col mt-2">
+            <app-trip-card [trip] ="trip"></app-trip-card>    
+        </div>        
     }
 </div>

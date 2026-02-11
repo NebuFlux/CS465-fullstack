@@ -13,12 +13,14 @@ const aboutController = require("../controllers/about");
 // define route for our trips endpoint
 router
     .route("/trips")
-    .get(tripsController.tripsList);
+    .get(tripsController.tripsList) // GET Method routes tripList
+    .post(tripsController.tripsAddTrip); // POST Method Adds a Trip
 
 // GET Method routes TripsFindByCode: @param - code
 router
     .route('/trips/:tripCode')
-    .get(tripsController.tripsFindByCode);
+    .get(tripsController.tripsFindByCode)
+    .put(tripsController.tripsUpdateTrip); // PUT method routes tripsUpdateTrip- requires parameter
 
 // route for rooms endpoint
 router.route('/rooms')

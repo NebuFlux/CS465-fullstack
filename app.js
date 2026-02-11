@@ -40,6 +40,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// Enable CORS
+app.use('/api', (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  next();
+});
+
 // wire up routers->controllers
 app.use('/', indexRouter);
 app.use('/index', indexRouter);
@@ -54,6 +62,7 @@ app.use('/api', apiRouter);
 
 // Use static router last
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
