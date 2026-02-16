@@ -1,6 +1,7 @@
 <div class="col-md-4">
     <h2 class="text-center">Add trip</h2>
-    <form *ngIf="addForm" [formGroup] ="addForm" (ngSubmit)="onSubmit()">
+    @if(editForm){
+    <form [formGroup] ="addForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label>Code:</label>
             <input type="text" 
@@ -109,4 +110,5 @@
         </div>
         <button type="submit" class="btn btn-info">Save</button>
     </form>
+    }
 </div>>
