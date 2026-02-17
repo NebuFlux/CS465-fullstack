@@ -13,12 +13,19 @@ const mealsRouter = require('./app_server/routes/meals');
 const newsRouter = require('./app_server/routes/news');
 const roomsRouter = require('./app_server/routes/rooms');
 const usersRouter = require('./app_server/routes/users');
-const apiRouter = require('./app_api/routes/index')
+const apiRouter = require('./app_api/routes/index');
+// handlebars templates
+const handlebars = require('hbs');
 
-const handlebars = require('hbs')
+// Wire in authentication module
+const passport = require('passport');
+require('./app_api/config/passport');
 
 // Database
 require('./app_api/models/db');
+
+// Wire up secret for JWT
+require('dotenv').config();
 
 const app = express();
 
@@ -37,15 +44,24 @@ app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Enable CORS
 app.use('/api', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   next();
+});
+
+
+// Catch unauthorized error and create 401
+app.use((err, req, res, next) => {
+  if(err.name === 'UnauthorizedError') {
+    res.status(401)
+      .json({"message": err.name + ": " + err.message});
+  }
 });
 
 // wire up routers->controllers
@@ -62,6 +78,9 @@ app.use('/api', apiRouter);
 
 // Use static router last
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Initialize Passport for authentication
+app.use(passport.initialize());
 
 
 // catch 404 and forward to error handler
