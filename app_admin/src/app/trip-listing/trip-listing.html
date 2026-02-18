@@ -1,6 +1,8 @@
 <!-- <pre>{{ trips | json }}</pre> -->
 <div>
+    @if(isLoggedIn()){
     <button (click)="addTrip()" class="btn btn-info">Add Trip</button>
+    }
 </div>
 <div class="row row-cols-auto row-cols-sm-3">
     @for (trip of trips; track trip._id){

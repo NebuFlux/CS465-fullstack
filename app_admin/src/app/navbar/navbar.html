@@ -11,7 +11,7 @@
             <a class="nav-link active" routerLink="">Trips<span class="sr-only ">(current)</span></a>
         </div>
     </div>
-    <div class="navbar-end ">
+    <div class="navbar-end me-5 h4">
     @if(!isLoggedIn()){
         <a class="nav-item" routerLink="login">
             <span class="has-icon-left">Log In</span>
@@ -19,7 +19,7 @@
     }
     @if(isLoggedIn()){
         <a class="nav-item active" (click)="onLogout()">
-            <span class="has-icon-left ">Log Out</span>
+            <span class="has-icon-left">Log Out</span>
         </a>    
     }
     </div>
