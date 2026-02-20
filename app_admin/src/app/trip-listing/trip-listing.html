@@ -1,13 +1,13 @@
 <!-- <pre>{{ trips | json }}</pre> -->
 <div>
     @if(isLoggedIn()){
-    <button (click)="addTrip()" class="btn btn-info mb-3">Add Trip</button>
+    <button (click)="addTrip()" class="btn btn-info mb-3 ms-3">Add Trip</button>
     }
 </div>
-<div class="container-fluid">
+<div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
         @for (trip of trips; track trip._id){
-            <div class="col d-flex">
+            <div class="col">
                 <app-trip-card [trip] ="trip" class="flex-fill"></app-trip-card>    
             </div>        
         }

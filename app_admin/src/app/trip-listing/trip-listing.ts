@@ -60,7 +60,4 @@ export class TripListing implements OnInit {
     this.getStuff();
   }
 
-  refreshTrips(): void{
-    this.getStuff();
-  }
 }
