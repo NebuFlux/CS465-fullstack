@@ -26,7 +26,8 @@ router
 router
     .route('/trips/:tripCode')
     .get(tripsController.tripsFindByCode)
-    .put(authenticateJWT, tripsController.tripsUpdateTrip); // PUT method routes tripsUpdateTrip- requires parameter
+    .put(authenticateJWT, tripsController.tripsUpdateTrip) // PUT method routes tripsUpdateTrip- requires parameter
+    .delete(authenticateJWT, tripsController.tripsDeleteTrip); // Delete trip
 
 // route for rooms endpoint
 router.route('/rooms')

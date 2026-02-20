@@ -15,7 +15,7 @@ const tripsList = async(req, res) => {
 
     if(!q)
     {   // Database returned no data
-        return res.status(404).json(err);
+        return res.status(404).json({message: "No Trips found!"});
     } else { //Return result list
         return res.status(200).json(q);    
     }
@@ -30,11 +30,11 @@ const tripsFindByCode = async(req, res) => {
         .exec();
 
         // Uncomment to show query results on console
-        console.log(q);
+        // console.log(q);
 
     if(!q)
     {   // Database returned no data
-        return res.status(404).json(err);
+        return res.status(404).json({message: "Trip not found!"});
     } else { //Return result list
         return res.status(200).json(q);    
     }
@@ -61,7 +61,7 @@ const tripsAddTrip = async(req, res) => {
         // Database returned no data
         return res
             .status(400)
-            .json(err);
+            .json({message: "failed to create trip"});
     } else { // Return new trip
         return res
             .status(201)
@@ -94,7 +94,7 @@ const tripsUpdateTrip = async(req, res) => {
 
     if(!q){
         // Database returned no data
-        return res.status(400).json(err);
+        return res.status(404).json({message: "Trip not found!"});
     }else{
         return res.status(200).json(q);
     }
@@ -102,8 +102,33 @@ const tripsUpdateTrip = async(req, res) => {
     //console.log(q);
 }
 
+const tripsDeleteTrip = async(req, res) =>{
+    try{
+        const q = await Model
+        .findOneAndDelete({'code': req.params.tripCode})
+        .exec();
+
+        if(!q){
+            // Database couldn't find any records
+            return res.status(404).json({message: "Trip not found!"});
+        } else {
+            return res.status(200).json(q);
+        }
+    }catch(err){
+        console.error("Delete trip failed:", {
+            message: err.message,
+            stack: err.stack,
+            name: err.name,
+            code: err.code,           // MongoDB error code if present
+            fullError: err            // sometimes helpful to see the whole object
+        });
+        return res.status(500).json(err);
+    }
+}
+
 module.exports = {
     tripsList, 
     tripsFindByCode, 
     tripsAddTrip, 
-    tripsUpdateTrip};
+    tripsUpdateTrip,
+    tripsDeleteTrip};

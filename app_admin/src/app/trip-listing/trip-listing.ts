@@ -23,7 +23,7 @@ export class TripListing implements OnInit {
     private cdr: ChangeDetectorRef,
     private authenticationService: Authentication
     ) {
-    console.log('trip-listing constructor');
+    //console.log('trip-listing constructor');
   }
 
   public isLoggedIn(){
@@ -46,7 +46,7 @@ export class TripListing implements OnInit {
           else {
             this.message = 'There were no trips retrieved from the database';
           }
-          console.log(this.message);
+          //console.log(this.message);
           this.cdr.detectChanges();
         },
         error: (error: any) => {
@@ -56,7 +56,11 @@ export class TripListing implements OnInit {
   }
 
   ngOnInit(): void{
-    console.log('ngOnInit');
+    //console.log('ngOnInit');
+    this.getStuff();
+  }
+
+  refreshTrips(): void{
     this.getStuff();
   }
 }

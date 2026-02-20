@@ -68,7 +68,7 @@ export class Authentication {
       .subscribe({
         next: (value: any) => {
           if(value){
-            console.log(value);
+            //console.log(value);
             this.authResp = value;
             this.saveToken(this.authResp.token);
           }
